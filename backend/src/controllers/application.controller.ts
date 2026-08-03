@@ -6,8 +6,8 @@ export async function index(req: Request, res: Response, next: NextFunction) {
         const applications = await Application.find({ userId: req.user?.id });
 
         res.status(200).json({ applications });
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 }
 
@@ -19,10 +19,25 @@ export async function store(req: Request, res: Response, next: NextFunction) {
         });
 
         res.status(201).json({ application });
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        next(error);
     }
 }
+
+export async function update(req: Request, res: Response, next: NextFunction) {
+    try {
+        const updated = await Application.updateOne({ _id: req.params.application }, req.body);
+
+        res.json({
+            message: updated.acknowledged
+                ? "Application updated successfully"
+                : "Application was not updated! try again",
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 
 export async function destroy(req: Request, res: Response, next: NextFunction) {
     try {
