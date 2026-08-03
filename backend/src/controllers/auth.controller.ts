@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
-import { env } from "../config/env.js";
+import { env } from "../bootstrap/env.js";
 import jwt from "jsonwebtoken";
 import { signToken } from "../utils/token.js";
 
