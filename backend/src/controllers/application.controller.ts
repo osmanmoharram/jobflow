@@ -38,7 +38,6 @@ export async function update(req: Request, res: Response, next: NextFunction) {
     }
 }
 
-
 export async function destroy(req: Request, res: Response, next: NextFunction) {
     try {
         const deleted = await Application.deleteOne({ _id: req.params.application });
