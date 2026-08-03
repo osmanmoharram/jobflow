@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { env } from "./config/env.js";
-import routes from './routes/index.js';
-
+import routes from "./routes/index.js";
 
 const app = express();
 
@@ -18,3 +17,5 @@ app.use((_req, res) => {
 });
 
 // errors handler
+
+export default app;
