@@ -23,3 +23,17 @@ export async function store(req: Request, res: Response, next: NextFunction) {
         next(err);
     }
 }
+
+export async function destroy(req: Request, res: Response, next: NextFunction) {
+    try {
+        const deleted = await Application.deleteOne({ _id: req.params.application });
+
+        res.status(200).json({
+            message: deleted.acknowledged
+                ? "Application deleted successfully"
+                : "Application was not deleted! try again",
+        });
+    } catch (err) {
+        next(err);
+    }
+}
