@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import z from "zod";
 import jwt from "jsonwebtoken";
-import { env } from "../config/env.js";
+import { env } from "../bootstrap/env.js";
 
 export function authenticate(req: Request, res: Response, next: NextFunction) {
     const header = req.headers.authorization;
@@ -29,8 +29,8 @@ export function authenticate(req: Request, res: Response, next: NextFunction) {
         }
 
         req.user = {
-            id: payload.sub
-        }
+            id: payload.sub,
+        };
 
         next();
     } catch (error) {
